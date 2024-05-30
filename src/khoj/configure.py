@@ -353,7 +353,7 @@ def upload_telemetry():
                     json.dumps(log[field])
                 except TypeError:
                     log[field] = str(log[field])
-        response = requests.post(constants.telemetry_server, json=state.telemetry)
+        response = requests.post(constants.telemetry_server, json=state.telemetry, timeout=60)
         response.raise_for_status()
     except Exception as e:
         logger.error(f"📡 Error uploading telemetry: {e}", exc_info=True)

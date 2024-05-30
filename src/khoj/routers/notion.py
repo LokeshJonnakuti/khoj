@@ -65,7 +65,7 @@ async def notion_auth_callback(request: Request, background_tasks: BackgroundTas
         "redirect_uri": NOTION_REDIRECT_URI,
     }
 
-    response = requests.post("https://api.notion.com/v1/oauth/token", data=json.dumps(data), headers=headers)
+    response = requests.post("https://api.notion.com/v1/oauth/token", data=json.dumps(data), headers=headers, timeout=60)
 
     final_response = response.json()
 

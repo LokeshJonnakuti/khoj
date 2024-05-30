@@ -118,7 +118,7 @@ class GithubToEntries(TextToEntries):
         repo_content_url = f"{repo_url}/git/trees/{repo.branch}"
         headers = {"Authorization": f"token {self.config.pat_token}"}
         params = {"recursive": "true"}
-        response = requests.get(repo_content_url, headers=headers, params=params)
+        response = requests.get(repo_content_url, headers=headers, params=params, timeout=60)
         contents = response.json()
 
         # Raise exception if hit rate limit
