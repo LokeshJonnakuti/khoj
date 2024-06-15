@@ -4,6 +4,7 @@ from typing import Dict, List, Tuple
 
 import requests
 from magika import Magika
+from security import safe_requests
 
 from khoj.database.models import Entry as DbEntry
 from khoj.database.models import GithubConfig, KhojUser
@@ -13,7 +14,6 @@ from khoj.processor.content.plaintext.plaintext_to_entries import PlaintextToEnt
 from khoj.processor.content.text_to_entries import TextToEntries
 from khoj.utils.helpers import timer
 from khoj.utils.rawconfig import GithubContentConfig, GithubRepoConfig
-from security import safe_requests
 
 logger = logging.getLogger(__name__)
 magika = Magika()
