@@ -1,6 +1,5 @@
 import re
 import uuid
-from random import choice
 
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
@@ -9,6 +8,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from pgvector.django import VectorField
 from phonenumber_field.modelfields import PhoneNumberField
+import secrets
 
 
 class BaseModel(models.Model):
@@ -133,7 +133,7 @@ def verify_agent(sender, instance, **kwargs):
         observed_random_numbers = set()
         while Agent.objects.filter(slug=slug).exists():
             try:
-                random_number = choice([i for i in range(0, 1000) if i not in observed_random_numbers])
+                random_number = secrets.choice([i for i in range(0, 1000) if i not in observed_random_numbers])
             except IndexError:
                 raise ValidationError("Unable to generate a unique slug for the Agent. Please try again later.")
             observed_random_numbers.add(random_number)
@@ -262,7 +262,7 @@ class PublicConversation(BaseModel):
 def verify_public_conversation(sender, instance, **kwargs):
     def generate_random_alphanumeric(length):
         characters = "0123456789abcdefghijklmnopqrstuvwxyz"
-        return "".join(choice(characters) for _ in range(length))
+        return "".join(secrets.choice(characters) for _ in range(length))
 
     # check if this is a new instance
     if instance._state.adding:

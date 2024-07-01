@@ -4,7 +4,6 @@ import datetime
 import logging
 import os
 import platform
-import random
 import uuid
 from collections import OrderedDict
 from enum import Enum
@@ -24,6 +23,7 @@ from asgiref.sync import sync_to_async
 from magika import Magika
 
 from khoj.utils import constants
+import secrets
 
 if TYPE_CHECKING:
     from sentence_transformers import CrossEncoder, SentenceTransformer
@@ -365,8 +365,8 @@ def generate_random_name():
     nouns = ["dog", "cat", "falcon", "whale", "turtle", "rabbit", "hamster", "snake", "spider", "elephant"]
 
     # Select two random words from the lists
-    adjective = random.choice(adjectives)
-    noun = random.choice(nouns)
+    adjective = secrets.choice(adjectives)
+    noun = secrets.choice(nouns)
 
     # Combine the words to form a name
     name = f"{adjective} {noun}"

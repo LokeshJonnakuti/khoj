@@ -1,7 +1,6 @@
 import json
 import logging
 import math
-import random
 import re
 import secrets
 import sys
@@ -780,7 +779,7 @@ class ConversationAdapters:
         if len(all_questions) < max_results:
             return all_questions
 
-        return random.sample(all_questions, max_results)
+        return secrets.SystemRandom().sample(all_questions, max_results)
 
     @staticmethod
     def get_valid_conversation_config(user: KhojUser, conversation: Conversation):
