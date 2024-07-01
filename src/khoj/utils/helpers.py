@@ -4,6 +4,7 @@ import datetime
 import logging
 import os
 import platform
+import secrets
 import uuid
 from collections import OrderedDict
 from enum import Enum
@@ -23,7 +24,6 @@ from asgiref.sync import sync_to_async
 from magika import Magika
 
 from khoj.utils import constants
-import secrets
 
 if TYPE_CHECKING:
     from sentence_transformers import CrossEncoder, SentenceTransformer
