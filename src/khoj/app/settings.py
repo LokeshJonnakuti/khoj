@@ -54,7 +54,7 @@ else:
         SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 if DISABLE_HTTPS:
-    SESSION_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = False
 
     # These need to be set to Lax in order to work with http in some browsers. See reference: https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-SESSION_COOKIE_SECURE
