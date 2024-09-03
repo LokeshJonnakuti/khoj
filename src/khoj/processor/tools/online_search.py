@@ -91,7 +91,7 @@ def search_with_google(subquery: str):
     payload = json.dumps({"q": subquery})
     headers = {"X-API-KEY": SERPER_DEV_API_KEY, "Content-Type": "application/json"}
 
-    response = requests.request("POST", SERPER_DEV_URL, headers=headers, data=payload)
+    response = requests.request("POST", SERPER_DEV_URL, headers=headers, data=payload, timeout=60)
 
     if response.status_code != 200:
         logger.error(response.text)

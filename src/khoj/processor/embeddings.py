@@ -60,7 +60,7 @@ class EmbeddingsModel:
             "Content-Type": "application/json",
         }
         try:
-            response = requests.post(self.inference_endpoint, json=payload, headers=headers)
+            response = requests.post(self.inference_endpoint, json=payload, headers=headers, timeout=60)
             response.raise_for_status()
         except requests.exceptions.HTTPError as e:
             logger.error(
@@ -109,7 +109,7 @@ class CrossEncoderModel:
             target_url = f"{self.inference_endpoint}"
             payload = {"inputs": {"query": query, "passages": [hit.additional[key] for hit in hits]}}
             headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
-            response = requests.post(target_url, json=payload, headers=headers)
+            response = requests.post(target_url, json=payload, headers=headers, timeout=60)
             return response.json()["scores"]
 
         cross_inp = [[query, hit.additional[key]] for hit in hits]
