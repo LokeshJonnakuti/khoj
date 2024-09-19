@@ -24,7 +24,6 @@ from urllib.parse import parse_qs, urlencode
 import cron_descriptor
 import openai
 import pytz
-import requests
 from apscheduler.job import Job
 from apscheduler.triggers.cron import CronTrigger
 from asgiref.sync import sync_to_async
@@ -78,6 +77,7 @@ from khoj.utils.helpers import (
     tool_descriptions_for_llm,
 )
 from khoj.utils.rawconfig import LocationData
+from security import safe_requests
 
 logger = logging.getLogger(__name__)
 
@@ -927,7 +927,7 @@ def scheduled_chat(
         headers["Authorization"] = f"Bearer {token}"
 
     # Call the chat API endpoint with authenticated user token and query
-    raw_response = requests.get(url, headers=headers)
+    raw_response = safe_requests.get(url, headers=headers)
 
     # Stop if the chat API call was not successful
     if raw_response.status_code != 200:

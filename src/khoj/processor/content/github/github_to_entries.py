@@ -13,6 +13,7 @@ from khoj.processor.content.plaintext.plaintext_to_entries import PlaintextToEnt
 from khoj.processor.content.text_to_entries import TextToEntries
 from khoj.utils.helpers import timer
 from khoj.utils.rawconfig import GithubContentConfig, GithubRepoConfig
+from security import safe_requests
 
 logger = logging.getLogger(__name__)
 magika = Magika()
@@ -118,7 +119,7 @@ class GithubToEntries(TextToEntries):
         repo_content_url = f"{repo_url}/git/trees/{repo.branch}"
         headers = {"Authorization": f"token {self.config.pat_token}"}
         params = {"recursive": "true"}
-        response = requests.get(repo_content_url, headers=headers, params=params)
+        response = safe_requests.get(repo_content_url, headers=headers, params=params)
         contents = response.json()
 
         # Raise exception if hit rate limit
