@@ -29,6 +29,7 @@ from apscheduler.triggers.cron import CronTrigger
 from asgiref.sync import sync_to_async
 from fastapi import Depends, Header, HTTPException, Request, UploadFile
 from PIL import Image
+from security import safe_requests
 from starlette.authentication import has_required_scope
 from starlette.requests import URL
 
@@ -77,7 +78,6 @@ from khoj.utils.helpers import (
     tool_descriptions_for_llm,
 )
 from khoj.utils.rawconfig import LocationData
-from security import safe_requests
 
 logger = logging.getLogger(__name__)
 
