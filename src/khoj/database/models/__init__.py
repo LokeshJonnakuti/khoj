@@ -1,4 +1,5 @@
 import re
+import secrets
 import uuid
 
 from django.contrib.auth.models import AbstractUser
@@ -8,7 +9,6 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from pgvector.django import VectorField
 from phonenumber_field.modelfields import PhoneNumberField
-import secrets
 
 
 class BaseModel(models.Model):
