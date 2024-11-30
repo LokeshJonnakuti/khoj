@@ -19,7 +19,7 @@ RESEND_API_KEY = os.getenv("RESEND_API_KEY")
 
 static_files = os.path.join(settings.BASE_DIR, "static")
 
-env = Environment(loader=FileSystemLoader(static_files))
+env = Environment(loader=FileSystemLoader(static_files), autoescape=True)
 
 if not RESEND_API_KEY:
     logger.warn("RESEND_API_KEY not set - email sending disabled")
